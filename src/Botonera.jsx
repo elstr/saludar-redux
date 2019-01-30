@@ -8,8 +8,8 @@ class Botonera extends Component {
     this.state = {
       nombre: ""
     };
-    this.despacharHola = this.despacharHola.bind(this);
-    this.despacharChau = this.despacharChau.bind(this);
+    // this.despacharHola = this.despacharHola.bind(this);
+    // this.despacharChau = this.despacharChau.bind(this);
     this.cambiarNombre = this.cambiarNombre.bind(this);
     this.despacharCambiarNombre = this.despacharCambiarNombre.bind(this);
   }
@@ -19,12 +19,12 @@ class Botonera extends Component {
       nombre: e.target.value
     });
   }
-  despacharHola() {
-    this.props.decirHola(this.state.nombre);
-  }
-  despacharChau() {
-    this.props.decirChau(this.state.nombre);
-  }
+  // despacharHola() {
+  //   this.props.decirHola();
+  // }
+  // despacharChau() {
+  //   this.props.decirChau();
+  // }
   despacharCambiarNombre() {
     this.props.cambiarNombre(this.state.nombre);
   }
@@ -32,8 +32,8 @@ class Botonera extends Component {
     return (
       <div>
         <input type="text" onChange={this.cambiarNombre} />
-        <Button onClick={this.despacharHola}>Despachar Hola!</Button>
-        <Button onClick={this.despacharChau}>Despachar Chau!</Button>
+        <Button onClick={() => this.props.decirHola()}>Despachar Hola!</Button>
+        <Button onClick={() => this.props.decirChau()}>Despachar Chau!</Button>
         <Button onClick={this.despacharCambiarNombre}>Cambiar nombre!</Button>
       </div>
     );
@@ -44,9 +44,10 @@ const mapStateToProps = state => ({
   mensaje: state.mensaje,
   nombre: state.nombre
 });
+
 const mapDispatchToProps = dispatch => ({
-  decirHola: params => dispatch(decirHola(params)),
-  decirChau: params => dispatch(decirChau(params)),
+  decirHola: () => dispatch(decirHola()),
+  decirChau: () => dispatch(decirChau()),
   cambiarNombre: params => dispatch(cambiarNombre(params))
 });
 
