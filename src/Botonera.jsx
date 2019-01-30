@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { decirChau, decirHola } from "./State/actions";
+import { decirChau, decirHola, cambiarNombre } from "./State/actions";
 import { Button } from "react-bootstrap";
-class Saludo extends Component {
+class Botonera extends Component {
   constructor() {
     super();
     this.state = {
@@ -11,6 +11,7 @@ class Saludo extends Component {
     this.despacharHola = this.despacharHola.bind(this);
     this.despacharChau = this.despacharChau.bind(this);
     this.cambiarNombre = this.cambiarNombre.bind(this);
+    this.despacharCambiarNombre = this.despacharCambiarNombre.bind(this);
   }
 
   cambiarNombre(e) {
@@ -24,26 +25,32 @@ class Saludo extends Component {
   despacharChau() {
     this.props.decirChau(this.state.nombre);
   }
+  despacharCambiarNombre() {
+    this.props.cambiarNombre(this.state.nombre);
+  }
   render() {
     return (
       <div>
         <input type="text" onChange={this.cambiarNombre} />
         <Button onClick={this.despacharHola}>Despachar Hola!</Button>
         <Button onClick={this.despacharChau}>Despachar Chau!</Button>
+        <Button onClick={this.despacharCambiarNombre}>Cambiar nombre!</Button>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  mensaje: state.mensaje
+  mensaje: state.mensaje,
+  nombre: state.nombre
 });
 const mapDispatchToProps = dispatch => ({
   decirHola: params => dispatch(decirHola(params)),
-  decirChau: params => dispatch(decirChau(params))
+  decirChau: params => dispatch(decirChau(params)),
+  cambiarNombre: params => dispatch(cambiarNombre(params))
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Saludo);
+)(Botonera);

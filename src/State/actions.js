@@ -1,9 +1,23 @@
-import { createAction } from "redux-actions";
-
 // Actions
 export const HOLA = "HOLA";
 export const CHAU = "CHAU";
+export const CAMBIAR_NOMBRE = "CAMBIAR_NOMBRE";
 
-// Action Creators
-export const decirHola = createAction(HOLA);
-export const decirChau = createAction(CHAU);
+export function decirHola() {
+  return {
+    type: HOLA
+  };
+}
+export function decirChau() {
+  return {
+    type: CHAU
+  };
+}
+export function cambiarNombre(nombre) {
+  return {
+    type: CAMBIAR_NOMBRE,
+    payload: {
+      nombre
+    }
+  };
+}

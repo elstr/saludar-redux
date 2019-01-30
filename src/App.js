@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Saludo from "./Saludo";
+import Botonera from "./Botonera";
 class App extends Component {
   componentWillReceiveProps(nextProps) {
     console.log({ nextProps });
@@ -9,7 +9,7 @@ class App extends Component {
     const { mensaje } = this.props;
     return (
       <div className="App">
-        <Saludo />
+        <Botonera />
         {mensaje && <p>{mensaje}</p>}
       </div>
     );
